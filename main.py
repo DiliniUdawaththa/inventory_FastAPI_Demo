@@ -1,7 +1,10 @@
 from fastapi import FastAPI
+import database_models
 from models import Product
+from database import engine
 
 app = FastAPI()
+database_models.Base.metadata.create_all(bind=engine)
 
 products = [
     Product(id=1, name="Laptop", price=999.99, quantity=10, description="A high-performance laptop."),
